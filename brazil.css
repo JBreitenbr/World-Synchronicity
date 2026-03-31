@@ -1,0 +1,309 @@
+@import url('https://fonts.googleapis.com/css?family=Palatino');
+@import url('https://fonts.googleapis.com/css?family=Sofia+Sans');
+:root {
+  --bg-body: #bbcfdc;          
+  --primary-col: #342d1a;
+  --secondary-col: #a99167;
+  --text-muted: #746d64;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Palatino",serif;
+  background-color: var(--bg-body);
+  padding: 0.9rem;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;  
+    height: 108px; 
+    overflow: hidden; 
+    background: #1f3b57;
+    backdrop-filter: blur(6px);
+    text-align: center;
+    color: white;
+    padding: 10px;
+    z-index: 1000;
+    font-size: 0.95rem;
+}
+
+nav a {
+  font-family:"Sofia Sans";
+  margin: 0px 4px;
+  text-decoration:none;
+  color: #f5f5f5;
+}
+
+#act {
+  font-weight:bold;
+  font-style: italic;
+}
+
+.page {
+  width: 100%;
+  max-width: 780px;
+  margin: 120px auto 0 auto;
+  padding: 1.7rem 1.3rem 2rem;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(250, 246, 239, 0.96));
+  border-radius: 1.3rem;
+  border: 1px solid rgba(140, 120, 95, 0.18);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ganz feine „Faser“-Struktur im Page-Hintergrund */
+.page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(120deg, rgba(160, 140, 110, 0.07) 0.5px, transparent 0.5px),
+    linear-gradient(210deg, rgba(180, 170, 150, 0.06) 0.7px, transparent 0.7px);
+  background-size: 9px 9px, 13px 13px;
+  opacity: 0.35;
+}
+
+.page > * {
+  position: relative; /* damit Inhalt über der Textur liegt */
+}
+
+/* Timeline */
+
+.timeline {
+  border-top: 1px solid rgba(140, 120, 95, 0.18);
+  padding-top: 1.1rem;
+  position: relative;
+}
+
+.page-header {
+  font-size: 1.7rem;
+  border-left: 2px solid var(--primary-col);
+  padding-left: 1rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+/* kleiner Farbbalken als Header-Akzent */
+.page-header::before {
+  content: "";
+  position: absolute;
+  top: -0.35rem;
+  left: 1rem;
+  width: 90px;
+  height: 5px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--primary-col), var(--secondary-col));
+  opacity: 0.9;
+}
+
+.page-header .label {
+  font-family:"Sofia Sans",sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--secondary-col);
+  margin-bottom: 0.4rem;
+}
+.city-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 0.3rem;
+  border: 1px solid lime;
+}
+.city-text {
+  margin: 0;
+  font-size: 0.84rem;
+  color: var(--primary-col);
+  line-height: 1.15;
+  font-style:italic;
+  font-family:"Lora",serif;
+}
+
+/* vertikale Leitlinie für den Tag */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 0.25rem;
+  top: 1.4rem;
+  bottom: 0.2rem;
+  width: 1px;
+  background: var(--primary-col);
+  opacity: 0.7;
+}
+
+.time-block {
+  padding: 0.9rem 0 0.9rem 1.3rem;
+  border-bottom: 1px solid rgba(140, 120, 95, 0.14);
+  position: relative;
+}
+
+.time-block:last-of-type {
+  border-bottom: none;
+}
+
+/* kleiner Punkt an der Zeit-Achse */
+.time-block::before {
+  content: "";
+  position: absolute;
+  left: 0.02rem;
+  top: 1.05rem;
+  width: 0.56rem;
+  height: 0.56rem;
+  border-radius: 999px;
+  background: var(--primary-col);
+}
+
+.time-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.4rem;
+  margin-bottom: 0.25rem;
+}
+
+/* Uhr-Symbol → kleine grafische Form vor der Zeit */
+.time-label,.time-pure {
+  font-size: 0.88rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--primary-col);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.time-label::before {
+  content: "";
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--primary-col);
+  position: relative;
+}
+
+/* kleiner Zeiger im „Kreis“ */
+.time-label::after {
+  content: "";
+  position: absolute;
+  width: 0.36rem;
+  height: 1px;
+  background: var(--primary-col);
+  transform-origin: left center;
+  transform: translateX(0.17rem) rotate(35deg);
+  opacity: 0.9;
+      }
+.time-text {
+  margin: 0;
+  font-size: 0.77rem;
+  color: var(--text-muted);
+  line-height: 1.15;
+  }
+.time-location {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  font-style: italic;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+  
+/* Responsive */
+@media (min-width: 576px) {
+  body {
+    padding: 1.5rem;
+  }
+  
+  nav {
+    font-size:1.15rem;
+    height: min(18vw,18vh,120px);
+  }  
+  
+  .page {
+    padding: 2.25rem 1.9rem 2.4rem;
+  }
+  
+  .city-text {
+    font-size:0.92rem;
+  }
+  
+  .timeline::before {
+    left: 0.35rem;
+  }
+
+  .time-block {
+    padding-left: 1.4rem; 
+  }
+
+  .time-block::before {
+    left: 0.09rem; 
+  }  
+  
+  .time-label, .time-pure, .time-location {
+     font-size:0.94rem;
+  }
+  
+  .time-text {
+    font-size: 0.83rem;
+  }
+  
+  .page-header {
+    border-left-width: 3px; 
+  }
+}
+
+@media (min-width: 768px) {
+  nav {
+    font-size: 1.25rem;
+  }
+  
+  .page {
+    padding: 1.7rem 1.3rem 2rem;
+  }
+}
+
+@media (min-width: 992px) {
+  nav {
+    height: 130px;
+    font-size:1.3rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .city-text {
+    font-size:1.1rem;
+  }
+  
+  .time-label, .time-pure, .time-location {
+     font-size:1.12rem;
+  }
+  
+  .time-text {
+    font-size: 0.94rem;
+  }
+  
+  .page-header .label {
+     font-size: 1.6rem;
+    }
+}
+
+@media (max-width:361px) {
+  nav {
+      font-size:0.88rem;
+  }
+  nav a {
+    margin: 0px 2px;
+  }
+}
